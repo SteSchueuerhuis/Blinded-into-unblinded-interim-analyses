@@ -1,0 +1,2 @@
+sim_idx,int_n_pat,int_n_ev,int_perc_evI,int_perc_evC,int_lr_stat,int_hazard_ratio,int_trial_dur,int_unblinded,sec_n_pat,sec_n_ev,sec_perc_evI,sec_perc_evC,sec_lr_stat,sec_inv_norm,sec_hazard_ratio,sec_trial_dur,sec_km_surv_1year_I,sec_km_surv_1year_C,sec_rej,int_rej
+1,82,27,0.268292682926829,0.390243902439024,1.39412291902015,0.58191752007237,12,FALSE,152,140,0.855263157894737,0.986842105263158,4.25690464603877,4.05679288003241,0.479986024272627,72,0.561133603238867,0.302631578947368,1,0

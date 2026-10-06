@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Stephen Schueuerhuis">
+
+<title>Code Documentation</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="README_files/libs/clipboard/clipboard.min.js"></script>
+<script src="README_files/libs/quarto-html/quarto.js"></script>
+<script src="README_files/libs/quarto-html/popper.min.js"></script>
+<script src="README_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="README_files/libs/quarto-html/anchor.min.js"></script>
+<link href="README_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="README_files/libs/quarto-html/quarto-syntax-highlighting-de84f8d6bb715db06a919283c2d1e787.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="README_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="README_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="README_files/libs/bootstrap/bootstrap-cf43a150f4ed865b4eb4d60b88c21c49.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Contents</h2>
+   
+  <ul>
+  <li><a href="#content" id="toc-content" class="nav-link active" data-scroll-target="#content"><span class="header-section-number">1</span> Content</a></li>
+  <li><a href="#file-and-folder-structure" id="toc-file-and-folder-structure" class="nav-link" data-scroll-target="#file-and-folder-structure"><span class="header-section-number">2</span> File and Folder-Structure</a></li>
+  <li><a href="#how-to-reproduce-the-results-shown-in-the-paper" id="toc-how-to-reproduce-the-results-shown-in-the-paper" class="nav-link" data-scroll-target="#how-to-reproduce-the-results-shown-in-the-paper"><span class="header-section-number">3</span> How to reproduce the results shown in the paper</a></li>
+  <li><a href="#helper-scripts" id="toc-helper-scripts" class="nav-link" data-scroll-target="#helper-scripts"><span class="header-section-number">4</span> Helper scripts</a></li>
+  <li><a href="#working-with-intermediate-results" id="toc-working-with-intermediate-results" class="nav-link" data-scroll-target="#working-with-intermediate-results"><span class="header-section-number">5</span> Working with intermediate results</a></li>
+  <li><a href="#runtime-examples" id="toc-runtime-examples" class="nav-link" data-scroll-target="#runtime-examples"><span class="header-section-number">6</span> Runtime examples</a></li>
+  <li><a href="#session-info" id="toc-session-info" class="nav-link" data-scroll-target="#session-info"><span class="header-section-number">7</span> Session Info</a></li>
+  <li><a href="#hardware-specifications" id="toc-hardware-specifications" class="nav-link" data-scroll-target="#hardware-specifications"><span class="header-section-number">8</span> Hardware specifications</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Code Documentation</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+<p class="subtitle lead">Blinded-into-unblinded interim analyses for clinical trials with time-to-event endpoints</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Stephen Schueuerhuis </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="content" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="content"><span class="header-section-number">1</span> Content</h2>
+<p>This files contains a short documentation of the code belonging to the submitted paper <strong><em>Blinded-into-unblinded interim analyses for clinical trials with time-to-event endpoints</em></strong> and illustrates how the results shown in the paper may be reproduced.</p>
+<p>To begin working with the submitted code, open the R project file <code>blinded_into_unblinded.Rproj</code>. This ensures that all file paths are correctly set relative to the project root.</p>
+</section>
+<section id="file-and-folder-structure" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="file-and-folder-structure"><span class="header-section-number">2</span> File and Folder-Structure</h2>
+<p>The project contains the following files:</p>
+<table class="caption-top table">
+<caption>File-Structure</caption>
+<colgroup>
+<col style="width: 20%">
+<col style="width: 80%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>0_util.R</code></td>
+<td>Contains helper functions for data simulation, computation of test statistics, and translation of survival parameters.</td>
+</tr>
+<tr class="even">
+<td><code>1_data_simulation.R</code></td>
+<td>Simulates the data for all considered simulation settings and saves them in <em>Simulation Study/Data</em>.</td>
+</tr>
+<tr class="odd">
+<td><code>2_design_creation.R</code></td>
+<td>Creates study designs (<code>create_hybrid_design())</code>for all considered simulation settings and saves them in <em>Simulation Study/Designs</em>.</td>
+</tr>
+<tr class="even">
+<td><code>3_evaluation.R</code></td>
+<td>Imports the data from <em>Simulation Study/Data</em> and the designs from <em>Simulation Study/Designs</em>. Computes performance characteristics for all designs across all data settings and saves the results as raw data and in aggregated form in <em>Simulation Study/Results</em>.</td>
+</tr>
+<tr class="odd">
+<td><code>4_plots.R</code></td>
+<td>Imports the results from <em>Simulation Study/Results</em>, generates the plots shown in the paper, and saves them in <em>Simulation Study/Plots</em></td>
+</tr>
+<tr class="even">
+<td><code>example_S.5.R</code></td>
+<td>Reproduces the example from Section 5 of the paper. The corresponding data, design, and results are saved in the <em>Example</em> folder.</td>
+</tr>
+<tr class="odd">
+<td><code>appendix_A.1.R</code></td>
+<td>Reproduces the plot shown in Appendix A.1 of the paper and saves it in the <em>Appendix</em> folder.</td>
+</tr>
+<tr class="even">
+<td><code>appendix_A.5.R</code></td>
+<td>Reproduces the plot shown in Appendix A.5 of the paper and saves it in the <em>Appendix</em> folder.</td>
+</tr>
+<tr class="odd">
+<td><code>appendix_A.7.R</code></td>
+<td>Reproduces the table shown in Appendix A.7 of the paper and saves it as a <em>.csv</em> file in the <em>Appendix</em> folder.</td>
+</tr>
+<tr class="even">
+<td><code>master_script.R</code></td>
+<td><p>Master script that sources the files<br>
+<code>1_data_simulation.R, 2_design_creation.R, 3_evaluation.R</code>, and <code>4_plots.R</code> in sequence to reproduce the entire simulation study. It also sources <code>example_S.5.R</code>, <code>appendix_A.1.R</code>, <code>appendix_A.5.R</code>, and <code>appendix_A.7.R</code> to reproduce the example and the appendix figures/tables.</p>
+<p><strong>Note:</strong> Reproducing the full simulation study is computationally intensive.</p></td>
+</tr>
+<tr class="odd">
+<td><code>repro_example.R</code></td>
+<td>To potentially prevent having to rerun the whole simulation study, we provide the script <code>repro_example.R.</code> This script enables reproducing Figures 2 and 3 from the paper, corresponding to the simulation Study 1 using Pocock-Boundaries in the paper. The corresponding data, designs, results, and plots are saved in the <em>Reproduction Example</em> folder.</td>
+</tr>
+</tbody>
+</table>
+<p>The project contains the following folders:</p>
+<table class="caption-top table">
+<caption>File-Structure</caption>
+<colgroup>
+<col style="width: 20%">
+<col style="width: 80%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><em>Simulation Study</em></td>
+<td><p>The <em>Simulation Study</em> folder contains all data, designs, results, and plots for the considered simulation settings. Its structure is as follows:</p>
+<p><em>Simulation Study</em></p>
+<ul>
+<li><p><em>Data</em></p></li>
+<li><p><em>Designs</em></p></li>
+<li><p><em>Results</em></p></li>
+<li><p>Plots</p></li>
+</ul>
+<p>Each of the four main folders (<em>Data, Designs, Results, Plots</em>) contains the following subfolders:</p>
+<ul>
+<li><p><em>Performance</em></p>
+<ul>
+<li><p><em>Study_1_Pocock</em></p></li>
+<li><p><em>Study_2_Pocock</em></p></li>
+<li><p><em>Study_1_O’Brien-Fleming</em></p></li>
+<li><p><em>Study_2_O’Brien-Fleming</em></p></li>
+</ul></li>
+<li><p><em>Type-1 Error Rate and Bias</em></p>
+<ul>
+<li><p><em>n=180</em></p></li>
+<li><p><em>n=360</em></p></li>
+<li><p><em>n=720</em></p></li>
+<li><p>n=1080</p></li>
+</ul></li>
+</ul>
+<p>That is, the <em>Performance</em> folder includes the complete simulation study for all performance characteristics:</p>
+<ul>
+<li><p><strong>Pocock</strong> design: Figures 2, 3, 11, and 12 in the main paper.</p></li>
+<li><p><strong>O’Brien-Fleming</strong> design: Figures 1–4 in the Supplement.</p></li>
+</ul>
+<p>Moreover, the <em>Type-1 Error Rate</em> folder contains the simulation results for bias and type-1 error rate across all sample sizes, corresponding to Appendix A.3 and A.4 (Figures 5–9).</p></td>
+</tr>
+<tr class="even">
+<td><em>Reproduction Example</em></td>
+<td>The file <code>master_script.R</code> reruns the whole simulation study by sequentially calling the corresponding script-files. Due to the long runtime of the whole simulation study, we provide the script <code>repro_example.R</code> that reproduces the results for simulation study 1, using Pocock-boundaries. The data, designs, results and plots are saved in the folder <em>Reproduction Example.</em></td>
+</tr>
+<tr class="odd">
+<td><em>Example</em></td>
+<td>This folder contains the data, designs, and results for the example discussed in Section 5 of the main paper. Structurally, this script is equivalent to the simulation scripts, with the key difference that it generates a single dataset, which is then analyzed using all designs.</td>
+</tr>
+<tr class="even">
+<td><em>Appendix</em></td>
+<td>This folder contains the output created by the R-files <code>appendix_A.1.R</code>, <code>appendix_A.5.R</code> and <code>appendix_A.7.R</code>.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="how-to-reproduce-the-results-shown-in-the-paper" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="how-to-reproduce-the-results-shown-in-the-paper"><span class="header-section-number">3</span> How to reproduce the results shown in the paper</h2>
+<p>To reproduce the results in the paper, the file <code>master_script.R</code> needs to be run. All output (data, designs, results, plots) will automatically be saved in the corresponding folder, mainly in the <em>Simulation Study</em> folder. Plots-files are named according to their appearance in the paper. Reproducibility is ensured by using seeds set in the script <code>1_data_simulation.R</code> prior to the data simulation in all simulation settings.</p>
+<p>Due to the long runtime of the whole simulation study, we provide the script <code>repro_example.R</code> that reprocudes the results for simulation study 1, using Pocock-boundaries. The data, designs, results and plots are saved in the folder <em>Reproduction Example.</em> Hence, running this script reproduces Figure 2 and Figure 3 shown in the paper.</p>
+<p>The results presented in Section 5 (Study Example) and in the Appendix (A.1, A.5, and A.7) can be reproduced by running the corresponding R scripts, as outlined above.</p>
+</section>
+<section id="helper-scripts" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="helper-scripts"><span class="header-section-number">4</span> Helper scripts</h2>
+<p>Helper functions are contained in the file <code>0_util.R</code>. The file is organized into the following sections:</p>
+<ul>
+<li><p><strong>Trial simulation:</strong> Functions for simulating study entry times, survival outcomes, and censoring data for treatment and control groups under specified distributional assumptions. It also includes a function that generates a dataset at a given interim timepoint.</p></li>
+<li><p><strong>Test statistics:</strong> A wrapper function around <code>survdiff()</code> that extracts the normally distributed version of the log-rank test statistic from the <em>survival</em> package. Additionally, a function for computing the inverse normal test statistic is provided. Note, however, that in the paper’s Methods section, we use the cumulative test statistic for testing.</p></li>
+<li><p><strong>Survival parameters:</strong> Functions for translating between different parameterizations of survival models—such as event probabilities, hazards, and median survival times—under the assumption of an exponential distribution.</p></li>
+<li><p><strong>Study design:</strong> A wrapper function that constructs a study design, including its boundary set, and defines unblinding boundaries for the hybrid designs.</p></li>
+<li><p><strong>Event estimation:</strong> Functions for estimating the expected number of events at a given time, based on assumptions about survival and censoring. These functions are used to compute the boundaries of the hybrid designs, as described in Sections 2.2.4–2.2.6 of the paper.</p></li>
+</ul>
+<p>For details, we refer to the comments in the corresponding code file.</p>
+</section>
+<section id="working-with-intermediate-results" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="working-with-intermediate-results"><span class="header-section-number">5</span> Working with intermediate results</h2>
+<p>The data files are large (several GB) and therefore not included with the code. However, all result files generated by <code>3_evaluation.R</code> have been uploaded to the corresponding results folder, as outlined above. Consequently, running <code>4_plots.R</code> will reproduce all plots shown in the paper without the need to re-run the full data simulation.</p>
+</section>
+<section id="runtime-examples" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="runtime-examples"><span class="header-section-number">6</span> Runtime examples</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 8%">
+<col style="width: 40%">
+<col style="width: 18%">
+<col style="width: 18%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Study</th>
+<th>Sample Size</th>
+<th>Parameter Settings</th>
+<th>Time for data generation (in h)</th>
+<th>Time for data evaluation (in h)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Type-1 Error Rate</td>
+<td>n=180/group</td>
+<td>1-year event probabilities: 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4</td>
+<td>approx. 2h</td>
+<td>approx. 3.5h</td>
+</tr>
+<tr class="even">
+<td>Type-1 Error Rate</td>
+<td>n=1080/group</td>
+<td>1-year event probabilities: 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4</td>
+<td>approx. 6.5h</td>
+<td>approx. 3.5h</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="session-info" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="session-info"><span class="header-section-number">7</span> Session Info</h2>
+<p>The example results presented in this paper that were run on a local computer using the following R packages and their corresponding versions:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>R version 4.5.1 (2025-06-13 ucrt)
+Platform: x86_64-w64-mingw32/x64
+Running under: Windows 10 x64 (build 19045)
+
+Matrix products: default
+  LAPACK version 3.12.1
+
+locale:
+[1] LC_COLLATE=German_Germany.utf8  LC_CTYPE=German_Germany.utf8   
+[3] LC_MONETARY=German_Germany.utf8 LC_NUMERIC=C                   
+[5] LC_TIME=German_Germany.utf8    
+
+time zone: Europe/Berlin
+tzcode source: internal
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] survminer_0.5.0   ggpubr_0.6.2      ggplot2_4.0.0     dplyr_1.1.4      
+ [5] plyr_1.8.9        tidyr_1.3.1       rpact_4.2.1       survival_3.8-3   
+ [9] magrittr_2.0.3    data.table_1.17.8
+
+loaded via a namespace (and not attached):
+ [1] rappdirs_0.3.3     generics_0.1.4     rstatix_0.7.2      lattice_0.22-7    
+ [5] digest_0.6.37      evaluate_1.0.4     grid_4.5.1         RColorBrewer_1.1-3
+ [9] fastmap_1.2.0      jsonlite_2.0.0     Matrix_1.7-3       backports_1.5.0   
+[13] Formula_1.2-5      gridExtra_2.3      purrr_1.1.0        scales_1.4.0      
+[17] abind_1.4-8        cli_3.6.5          KMsurv_0.1-6       rlang_1.1.6       
+[21] splines_4.5.1      withr_3.0.2        yaml_2.3.10        tools_4.5.1       
+[25] ggsignif_0.6.4     km.ci_0.5-6        broom_1.0.9        vctrs_0.6.5       
+[29] R6_2.6.1           zoo_1.8-14         lifecycle_1.0.4    car_3.1-3         
+[33] htmlwidgets_1.6.4  pkgconfig_2.0.3    pillar_1.11.0      gtable_0.3.6      
+[37] glue_1.8.0         Rcpp_1.1.0         xfun_0.52          tibble_3.3.0      
+[41] tidyselect_1.2.1   rstudioapi_0.17.1  knitr_1.50         xtable_1.8-4      
+[45] survMisc_0.5.6     farver_2.1.2       htmltools_0.5.8.1  rmarkdown_2.29    
+[49] carData_3.0-5      compiler_4.5.1     S7_0.2.0          </code></pre>
+</div>
+</div>
+</section>
+<section id="hardware-specifications" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="hardware-specifications"><span class="header-section-number">8</span> Hardware specifications</h2>
+<p>The simulation study was conducted on the following system:</p>
+<ul>
+<li><p><strong>Processor (CPU):</strong> 11th Gen Intel Core i5-1135G7 @ 2.40 GHz (2.42 GHz)</p></li>
+<li><p><strong>Installed RAM:</strong> 8.00 GB (7.73 GB usable)</p></li>
+<li><p><strong>Storage:</strong> 238 GB SSD (<u>KIOXIA</u> KBG5AZNV256G)</p></li>
+<li><p><strong>Graphics (GPU):</strong> Intel Iris Xe Graphics (128 MB)</p></li>
+<li><p><strong>System type:</strong> 64-bit operating system</p></li>
+</ul>
+<!-- -->
+
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb3" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Code Documentation"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "Blinded-into-unblinded interim analyses for clinical trials with time-to-event endpoints"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> </span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: "Stephen Schueuerhuis"</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-depth: 3</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-location: right</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-title: "Contents"</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co">    smooth-scroll: true</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co">    theme: cosmo  # You can change to flatly, journal, simplex, etc.</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co">    highlight-style: github</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="an">editor:</span><span class="co"> visual</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="co">#| results: false</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="co"># To show all relevant packages in the session info</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"0_util.R"</span>)</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="fu">## Content</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>This files contains a short documentation of the code belonging to the submitted paper ***Blinded-into-unblinded interim analyses for clinical trials with time-to-event endpoints*** and illustrates how the results shown in the paper may be reproduced.</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>To begin working with the submitted code, open the R project file <span class="in">`blinded_into_unblinded.Rproj`</span>. This ensures that all file paths are correctly set relative to the project root.</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="fu">## File and Folder-Structure</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>The project contains the following files:</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>| Name                  | Description                                                                                                                                                                                                                                                                                                                                                   |</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>+=======================+===============================================================================================================================================================================================================================================================================================================================================================+</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>| <span class="in">`0_util.R`</span>            | Contains helper functions for data simulation, computation of test statistics, and translation of survival parameters.                                                                                                                                                                                                                                        |</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>| <span class="in">`1_data_simulation.R`</span> | Simulates the data for all considered simulation settings and saves them in *Simulation Study/Data*.                                                                                                                                                                                                                                                          |</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>| <span class="in">`2_design_creation.R`</span> | Creates study designs (<span class="in">`create_hybrid_design())`</span>for all considered simulation settings and saves them in *Simulation Study/Designs*.                                                                                                                                                                                                                          |</span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>| <span class="in">`3_evaluation.R`</span>      | Imports the data from *Simulation Study/Data* and the designs from *Simulation Study/Designs*. Computes performance characteristics for all designs across all data settings and saves the results as raw data and in aggregated form in *Simulation Study/Results*.                                                                                          |</span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>| <span class="in">`4_plots.R`</span>           | Imports the results from *Simulation Study/Results*, generates the plots shown in the paper, and saves them in *Simulation Study/Plots*                                                                                                                                                                                                                       |</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>| <span class="in">`example_S.5.R`</span>       | Reproduces the example from Section 5 of the paper. The corresponding data, design, and results are saved in the *Example* folder.                                                                                                                                                                                                                            |</span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>| <span class="in">`appendix_A.1.R`</span>      | Reproduces the plot shown in Appendix A.1 of the paper and saves it in the *Appendix* folder.                                                                                                                                                                                                                                                                 |</span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>| <span class="in">`appendix_A.5.R`</span>      | Reproduces the plot shown in Appendix A.5 of the paper and saves it in the *Appendix* folder.                                                                                                                                                                                                                                                                 |</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>| <span class="in">`appendix_A.7.R`</span>      | Reproduces the table shown in Appendix A.7 of the paper and saves it as a *.csv* file in the *Appendix* folder.                                                                                                                                                                                                                                               |</span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>| <span class="in">`master_script.R`</span>     | Master script that sources the files\                                                                                                                                                                                                                                                                                                                         |</span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>|                       | <span class="in">`1_data_simulation.R, 2_design_creation.R, 3_evaluation.R`</span>, and <span class="in">`4_plots.R`</span> in sequence to reproduce the entire simulation study. It also sources <span class="in">`example_S.5.R`</span>, <span class="in">`appendix_A.1.R`</span>, <span class="in">`appendix_A.5.R`</span>, and <span class="in">`appendix_A.7.R`</span> to reproduce the example and the appendix figures/tables.                                                                         |</span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>|                       |                                                                                                                                                                                                                                                                                                                                                               |</span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>|                       | **Note:** Reproducing the full simulation study is computationally intensive.                                                                                                                                                                                                                                                                                 |</span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>| <span class="in">`repro_example.R`</span>     | To potentially prevent having to rerun the whole simulation study, we provide the script <span class="in">`repro_example.R.`</span> This script enables reproducing Figures 2 and 3 from the paper, corresponding to the simulation Study 1 using Pocock-Boundaries in the paper. The corresponding data, designs, results, and plots are saved in the *Reproduction Example* folder. |</span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>: File-Structure {tbl-colwidths="<span class="sc">\[</span>20,80<span class="sc">\]</span>"}</span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a>The project contains the following folders:</span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>+------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>| Name                   | Description                                                                                                                                                                                                                                                                                                                                                                           |</span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>+========================+=======================================================================================================================================================================================================================================================================================================================================================================================+</span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>| *Simulation Study*     | The *Simulation Study* folder contains all data, designs, results, and plots for the considered simulation settings. Its structure is as follows:                                                                                                                                                                                                                                     |</span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a>|                        |                                                                                                                                                                                                                                                                                                                                                                                       |</span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a>|                        | *Simulation Study*                                                                                                                                                                                                                                                                                                                                                                    |</span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a>|                        |                                                                                                                                                                                                                                                                                                                                                                                       |</span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a>|                        | -   *Data*                                                                                                                                                                                                                                                                                                                                                                            |</span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a>|                        |                                                                                                                                                                                                                                                                                                                                                                                       |</span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a>|                        | -   *Designs*                                                                                                                                                                                                                                                                                                                                                                         |</span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a>|                        |                                                                                                                                                                                                                                                                                                                                                                                       |</span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a>|                        | -   *Results*                                                                                                                                                                                                                                                                                                                                                                         |</span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a>|                        |                                                                                                                                                                                                                                                                                                                                                                                       |</span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a>|                        | -   Plots                                                                                                                                                                                                                                                                                                                                                                             |</span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a>|                        |                                                                                                                                                                                                                                                                                                                                                                                       |</span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a>|                        | Each of the four main folders (*Data, Designs, Results, Plots*) contains the following subfolders:                                                                                                                                                                                                                                                                                    |</span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a>|                        |                                                                                                                                                                                                                                                                                                                                                                                       |</span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a>|                        | -   *Performance*                                                                                                                                                                                                                                                                                                                                                                     |</span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a>|                        |                                                                                                                                                                                                                                                                                                                                                                                       |</span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a>|                        |     -   *Study_1_Pocock*                                                                                                                                                                                                                                                                                                                                                              |</span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a>|                        |                                                                                                                                                                                                                                                                                                                                                                                       |</span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a>|                        |     -   *Study_2_Pocock*                                                                                                                                                                                                                                                                                                                                                              |</span>
+<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a>|                        |                                                                                                                                                                                                                                                                                                                                                                                       |</span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a>|                        |     -   *Study_1_O'Brien-Fleming*                                                                                                                                                                                                                                                                                                                                                     |</span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a>|                        |                                                                                                                                                                                                                                                                                                                                                                                       |</span>
+<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a>|                        |     -   *Study_2_O'Brien-Fleming*                                                                                                                                                                                                                                                                                                                                                     |</span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a>|                        |                                                                                                                                                                                                                                                                                                                                                                                       |</span>
+<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a>|                        | -   *Type-1 Error Rate and Bias*                                                                                                                                                                                                                                                                                                                                                      |</span>
+<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a>|                        |                                                                                                                                                                                                                                                                                                                                                                                       |</span>
+<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a>|                        |     -   *n=180*                                                                                                                                                                                                                                                                                                                                                                       |</span>
+<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a>|                        |                                                                                                                                                                                                                                                                                                                                                                                       |</span>
+<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a>|                        |     -   *n=360*                                                                                                                                                                                                                                                                                                                                                                       |</span>
+<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a>|                        |                                                                                                                                                                                                                                                                                                                                                                                       |</span>
+<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a>|                        |     -   *n=720*                                                                                                                                                                                                                                                                                                                                                                       |</span>
+<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a>|                        |                                                                                                                                                                                                                                                                                                                                                                                       |</span>
+<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a>|                        |     -   n=1080                                                                                                                                                                                                                                                                                                                                                                        |</span>
+<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a>|                        |                                                                                                                                                                                                                                                                                                                                                                                       |</span>
+<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a>|                        | That is, the *Performance* folder includes the complete simulation study for all performance characteristics:                                                                                                                                                                                                                                                                         |</span>
+<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a>|                        |                                                                                                                                                                                                                                                                                                                                                                                       |</span>
+<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a>|                        | -   **Pocock** design: Figures 2, 3, 11, and 12 in the main paper.                                                                                                                                                                                                                                                                                                                    |</span>
+<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a>|                        |                                                                                                                                                                                                                                                                                                                                                                                       |</span>
+<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a>|                        | -   **O’Brien-Fleming** design: Figures 1–4 in the Supplement.                                                                                                                                                                                                                                                                                                                        |</span>
+<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a>|                        |                                                                                                                                                                                                                                                                                                                                                                                       |</span>
+<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a>|                        | Moreover, the *Type-1 Error Rate* folder contains the simulation results for bias and type-1 error rate across all sample sizes, corresponding to Appendix A.3 and A.4 (Figures 5–9).                                                                                                                                                                                                 |</span>
+<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a>+------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
+<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a>| *Reproduction Example* | The file `master_script.R` reruns the whole simulation study by sequentially calling the corresponding script-files. Due to the long runtime of the whole simulation study, we provide the script `repro_example.R` that reproduces the results for simulation study 1, using Pocock-boundaries. The data, designs, results and plots are saved in the folder *Reproduction Example.* |</span>
+<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a>+------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
+<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a>| *Example*              | This folder contains the data, designs, and results for the example discussed in Section 5 of the main paper. Structurally, this script is equivalent to the simulation scripts, with the key difference that it generates a single dataset, which is then analyzed using all designs.                                                                                                |</span>
+<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a>+------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
+<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a>| *Appendix*             | This folder contains the output created by the R-files <span class="in">`appendix_A.1.R`</span>, <span class="in">`appendix_A.5.R`</span> and <span class="in">`appendix_A.7.R`</span>.                                                                                                                                                                                                                                                                       |</span>
+<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a>+------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span>
+<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a>: File-Structure {tbl-colwidths="<span class="sc">\[</span>20,80<span class="sc">\]</span>"}</span>
+<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a><span class="fu">## How to reproduce the results shown in the paper</span></span>
+<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a>To reproduce the results in the paper, the file <span class="in">`master_script.R`</span> needs to be run. All output (data, designs, results, plots) will automatically be saved in the corresponding folder, mainly in the *Simulation Study* folder. Plots-files are named according to their appearance in the paper. Reproducibility is ensured by using seeds set in the script <span class="in">`1_data_simulation.R`</span> prior to the data simulation in all simulation settings.</span>
+<span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-135"><a href="#cb3-135" aria-hidden="true" tabindex="-1"></a>Due to the long runtime of the whole simulation study, we provide the script <span class="in">`repro_example.R`</span> that reprocudes the results for simulation study 1, using Pocock-boundaries. The data, designs, results and plots are saved in the folder *Reproduction Example.* Hence, running this script reproduces Figure 2 and Figure 3 shown in the paper.</span>
+<span id="cb3-136"><a href="#cb3-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-137"><a href="#cb3-137" aria-hidden="true" tabindex="-1"></a>The results presented in Section 5 (Study Example) and in the Appendix (A.1, A.5, and A.7) can be reproduced by running the corresponding R scripts, as outlined above.</span>
+<span id="cb3-138"><a href="#cb3-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-139"><a href="#cb3-139" aria-hidden="true" tabindex="-1"></a><span class="fu">## Helper scripts</span></span>
+<span id="cb3-140"><a href="#cb3-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-141"><a href="#cb3-141" aria-hidden="true" tabindex="-1"></a>Helper functions are contained in the file <span class="in">`0_util.R`</span>. The file is organized into the following sections:</span>
+<span id="cb3-142"><a href="#cb3-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-143"><a href="#cb3-143" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Trial simulation:** Functions for simulating study entry times, survival outcomes, and censoring data for treatment and control groups under specified distributional assumptions. It also includes a function that generates a dataset at a given interim timepoint.</span>
+<span id="cb3-144"><a href="#cb3-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-145"><a href="#cb3-145" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Test statistics:** A wrapper function around <span class="in">`survdiff()`</span> that extracts the normally distributed version of the log-rank test statistic from the *survival* package. Additionally, a function for computing the inverse normal test statistic is provided. Note, however, that in the paper’s Methods section, we use the cumulative test statistic for testing.</span>
+<span id="cb3-146"><a href="#cb3-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-147"><a href="#cb3-147" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Survival parameters:** Functions for translating between different parameterizations of survival models—such as event probabilities, hazards, and median survival times—under the assumption of an exponential distribution.</span>
+<span id="cb3-148"><a href="#cb3-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-149"><a href="#cb3-149" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Study design:** A wrapper function that constructs a study design, including its boundary set, and defines unblinding boundaries for the hybrid designs.</span>
+<span id="cb3-150"><a href="#cb3-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-151"><a href="#cb3-151" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Event estimation:** Functions for estimating the expected number of events at a given time, based on assumptions about survival and censoring. These functions are used to compute the boundaries of the hybrid designs, as described in Sections 2.2.4–2.2.6 of the paper.</span>
+<span id="cb3-152"><a href="#cb3-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-153"><a href="#cb3-153" aria-hidden="true" tabindex="-1"></a>For details, we refer to the comments in the corresponding code file.</span>
+<span id="cb3-154"><a href="#cb3-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-155"><a href="#cb3-155" aria-hidden="true" tabindex="-1"></a><span class="fu">## Working with intermediate results</span></span>
+<span id="cb3-156"><a href="#cb3-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-157"><a href="#cb3-157" aria-hidden="true" tabindex="-1"></a>The data files are large (several GB) and therefore not included with the code. However, all result files generated by <span class="in">`3_evaluation.R`</span> have been uploaded to the corresponding results folder, as outlined above. Consequently, running <span class="in">`4_plots.R`</span> will reproduce all plots shown in the paper without the need to re-run the full data simulation.</span>
+<span id="cb3-158"><a href="#cb3-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-159"><a href="#cb3-159" aria-hidden="true" tabindex="-1"></a><span class="fu">## Runtime examples</span></span>
+<span id="cb3-160"><a href="#cb3-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-161"><a href="#cb3-161" aria-hidden="true" tabindex="-1"></a>+-------------------+--------------+------------------------------------------------------------------------+---------------------------------+---------------------------------+</span>
+<span id="cb3-162"><a href="#cb3-162" aria-hidden="true" tabindex="-1"></a>| Study             | Sample Size  | Parameter Settings                                                     | Time for data generation (in h) | Time for data evaluation (in h) |</span>
+<span id="cb3-163"><a href="#cb3-163" aria-hidden="true" tabindex="-1"></a>+===================+==============+========================================================================+=================================+=================================+</span>
+<span id="cb3-164"><a href="#cb3-164" aria-hidden="true" tabindex="-1"></a>| Type-1 Error Rate | n=180/group  | 1-year event probabilities: 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4 | approx. 2h                      | approx. 3.5h                    |</span>
+<span id="cb3-165"><a href="#cb3-165" aria-hidden="true" tabindex="-1"></a>+-------------------+--------------+------------------------------------------------------------------------+---------------------------------+---------------------------------+</span>
+<span id="cb3-166"><a href="#cb3-166" aria-hidden="true" tabindex="-1"></a>| Type-1 Error Rate | n=1080/group | 1-year event probabilities: 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4 | approx. 6.5h                    | approx. 3.5h                    |</span>
+<span id="cb3-167"><a href="#cb3-167" aria-hidden="true" tabindex="-1"></a>+-------------------+--------------+------------------------------------------------------------------------+---------------------------------+---------------------------------+</span>
+<span id="cb3-168"><a href="#cb3-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-169"><a href="#cb3-169" aria-hidden="true" tabindex="-1"></a><span class="fu">## Session Info</span></span>
+<span id="cb3-170"><a href="#cb3-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-171"><a href="#cb3-171" aria-hidden="true" tabindex="-1"></a>The example results presented in this paper that were run on a local computer using the following R packages and their corresponding versions:</span>
+<span id="cb3-172"><a href="#cb3-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-175"><a href="#cb3-175" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-176"><a href="#cb3-176" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span>
+<span id="cb3-177"><a href="#cb3-177" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-178"><a href="#cb3-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-179"><a href="#cb3-179" aria-hidden="true" tabindex="-1"></a><span class="fu">## Hardware specifications</span></span>
+<span id="cb3-180"><a href="#cb3-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-181"><a href="#cb3-181" aria-hidden="true" tabindex="-1"></a>The simulation study was conducted on the following system:</span>
+<span id="cb3-182"><a href="#cb3-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-183"><a href="#cb3-183" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Processor (CPU):** 11th Gen Intel Core i5-1135G7 \@ 2.40 GHz (2.42 GHz)</span>
+<span id="cb3-184"><a href="#cb3-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-185"><a href="#cb3-185" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Installed RAM:** 8.00 GB (7.73 GB usable)</span>
+<span id="cb3-186"><a href="#cb3-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-187"><a href="#cb3-187" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Storage:** 238 GB SSD (<span class="co">[</span><span class="ot">KIOXIA</span><span class="co">]</span>{.underline} KBG5AZNV256G)</span>
+<span id="cb3-188"><a href="#cb3-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-189"><a href="#cb3-189" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Graphics (GPU):** Intel Iris Xe Graphics (128 MB)</span>
+<span id="cb3-190"><a href="#cb3-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-191"><a href="#cb3-191" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**System type:** 64-bit operating system</span>
+</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+<script src="README_files/libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
