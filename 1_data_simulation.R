@@ -32,7 +32,7 @@ for (n in n_values) {
   surv_parameters <- list(evProb = data.frame(medC_values, medI_values))
 
   ## simulation settings
-  n_sim <- 10
+  n_sim <- 10000
   t_max_acc <- 60
   acc_rate <- n / 36
   min_fu <- 12
@@ -122,7 +122,7 @@ study_setups <- list(
 )
 
 ## Constants
-n_sim <- 10
+n_sim <- 10000
 t_max_acc <- 60
 min_fu <- 12
 lambda_cens <- 0.0008403983 # corresponds t0 1% 1-year censoring probability
